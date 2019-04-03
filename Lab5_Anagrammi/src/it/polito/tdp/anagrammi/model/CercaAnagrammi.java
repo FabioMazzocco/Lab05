@@ -7,21 +7,34 @@ public class CercaAnagrammi {
 	
 	String iniziale;
 	List<String> anagrammi;
-	List<Character> nonUsati;
+	Anagramma parziale;
 	
 	public CercaAnagrammi(String parola) {
 		
 		this.iniziale = parola;
 		this.anagrammi = new ArrayList<String>();
-		this.nonUsati = new ArrayList<Character>();
-		
+		this.parziale = new Anagramma(parola);
 	}
 	
-	public void trovaAnagrammi(String parola) {
+	public void trovaAnagrammi() {
 		
-		Anagramma parziale = new Anagramma(parola);
+		//Condizione di terminazione
+		if(parziale.isComplete()) {
+			anagrammi.add(parziale.toString());
+			System.out.println(anagrammi.size() +". "+parziale.toString());
+		}
 		
-		if()
+		//Algoritmo ricorsivo
+		for(Character c : iniziale.toCharArray()) {
+			
+			if(!parziale.contains(c)) {
+				parziale.add(c);
+				trovaAnagrammi();
+				parziale.remove(c);
+			}
+			
+		}
+		
 	}
 	
 }

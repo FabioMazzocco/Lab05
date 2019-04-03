@@ -21,8 +21,12 @@ public Anagramma(String parola, List<Character> lettere) {
 		this.lunghezza = parola.length();
 	}
 	
-	public void add(char lettera) {
+	public void add(Character lettera) {
 		this.lettere.add(lettera);
+	}
+	
+	public void remove(Character c) {
+		this.lettere.remove(c);	
 	}
 	
 	public boolean isComplete() {
@@ -35,7 +39,6 @@ public Anagramma(String parola, List<Character> lettere) {
 		return this.lettere;
 	}
 	
-
 	@Override
 	public String toString() {
 		String anagramma = "";
@@ -50,6 +53,21 @@ public Anagramma(String parola, List<Character> lettere) {
 		Anagramma other = new Anagramma(this.parola, this.lettere);
 		return other;
 	}
+
+	public List<Character> stringToList(String s){
+		List<Character> list = new ArrayList<Character>();
+		for(int i=0; i<s.length(); i++)
+			list.add(s.charAt(i));
+		return list;
+	}
+
+	public boolean contains(Character c) {
+		if(lettere.contains(c))
+			return true;
+		return false;
+	}
+	
+	
 	
 	
 }
