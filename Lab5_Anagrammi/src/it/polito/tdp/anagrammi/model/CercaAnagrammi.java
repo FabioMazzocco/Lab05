@@ -4,15 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CercaAnagrammi {
-	 
-	List<String> anagrammi;
 	
-	public CercaAnagrammi() {
-		anagrammi = new ArrayList<String>();
+	String iniziale;
+	List<String> anagrammi;
+	List<Character> nonUsati;
+	
+	public CercaAnagrammi(String parola) {
+		
+		this.iniziale = parola;
+		this.anagrammi = new ArrayList<String>();
+		this.nonUsati = new ArrayList<Character>();
+		
 	}
 	
-	public void anagramma(String parola) {
+	public void trovaAnagrammi(String parola) {
 		
+		Anagramma parziale = new Anagramma(parola);
+		
+		if()
 	}
 	
 }
