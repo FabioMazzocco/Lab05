@@ -20,8 +20,10 @@ public class CercaAnagrammi {
 		
 		//Condizione di terminazione
 		if(parziale.isComplete()) {
-			anagrammi.add(parziale.toString());
-			System.out.println(anagrammi.size() +". "+parziale.toString());
+			if(!anagrammi.contains(parziale.toString()))
+				anagrammi.add(parziale.toString());
+			//System.out.println(anagrammi.size() +". "+parziale.toString());
+			return;
 		}
 		
 		//Algoritmo ricorsivo
@@ -31,10 +33,12 @@ public class CercaAnagrammi {
 				parziale.add(c);
 				trovaAnagrammi();
 				parziale.remove(c);
-			}
-			
+			}	
 		}
-		
+	}
+	
+	public List<String> getAnagrammi(){
+		return anagrammi;
 	}
 	
 }

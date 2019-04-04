@@ -44,7 +44,6 @@ public Anagramma(String parola, List<Character> lettere) {
 		String anagramma = "";
 		for(Character c : lettere)
 			anagramma += c;
-		anagramma += "\n";
 		return anagramma;
 	}
 	
@@ -60,11 +59,22 @@ public Anagramma(String parola, List<Character> lettere) {
 			list.add(s.charAt(i));
 		return list;
 	}
-
+	
 	public boolean contains(Character c) {
-		if(lettere.contains(c))
+		if(count(c, stringToList(parola)) == count(c, lettere)) {
+			//System.out.println("La lettera '"+c+"' è presente in numero uguale sia in "+parola+" che in "+lettere.toString());
 			return true;
+		}
+		//System.out.println("Manca almeno una lettera '"+c+"' in "+lettere.toString());
 		return false;
+	}
+	
+	public int count(Character c, List<Character> list) {
+		int i = 0;
+		for(Character ch : list)
+			if(ch.equals(c))
+				i++;
+		return i;
 	}
 	
 	

@@ -10,7 +10,6 @@ import java.sql.SQLException;
 public class DizionarioDAO {
 	
 	public boolean isCorrect(String anagramma) throws SQLException {
-			
 		final String sql = "SELECT * FROM parola WHERE nome = ?";
 		
 		try {
@@ -18,16 +17,17 @@ public class DizionarioDAO {
 			PreparedStatement st = conn.prepareStatement(sql);
 			st.setString(1, anagramma);
 			ResultSet rs = st.executeQuery();
-			conn.close();
 			
-			boolean result = rs.next();
+			boolean result;
 			
-			if(result)
-				return true;
-			return false;
-			
-			
+			if(rs.next())
+				result = true;
+			else
+				result = false;
+			//System.out.println("La parola "+anagramma+" è "+result);
+			return result;
 		}catch(SQLException e) {
+			e.printStackTrace();
 			throw new SQLException();
 		}
 	}

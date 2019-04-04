@@ -1,6 +1,8 @@
 package it.polito.tdp.anagrammi.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.anagrammi.model.AnagrammiModel;
@@ -35,9 +37,31 @@ public class AnagrammiController {
     @FXML
     private Button btnReset;
 
+    public AnagrammiController() {
+    	this.model = null;
+    }
+    
     @FXML
     void doCalcolaAnagrammi(ActionEvent event) {
-    	
+    	String parola = txtParola.getText();
+    	//System.out.println("La parola inserita è: '"+parola+"'");
+    	if(parola.equals("")) {
+    		txtCorretti.setText("Inserisci prima una parola");
+    		txtErrati.setText("Inserisci prima una parola");
+    		return;
+    	}
+    	parola = parola.toLowerCase();
+    	List<String> corretti = new ArrayList<String>();
+    	List<String> errati = new ArrayList<String>();
+    	model.trovaAnagrammi(parola, corretti, errati);
+    	txtCorretti.clear();
+    	txtErrati.clear();
+    	for(String s : corretti) {
+    		txtCorretti.appendText(s+"\n");
+    	}
+    	for(String s : errati) {
+    		txtErrati.appendText(s+"\n");
+    	}
     }
 
     @FXML
